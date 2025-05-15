@@ -16,7 +16,7 @@
         <a class="nav-link active text-warning fw-bold" href="#">GAMELIST</a>
       </div>
       <div>
-       <a href="profile.php"> <button class="btn btn-outline-warning" type="button">PROFILE</button> </a>
+       <a href="profile.php"> <button class="btn btn-outline-warning" type="button">LOGIN</button> </a>
       </div>
     </div>
   </nav>
