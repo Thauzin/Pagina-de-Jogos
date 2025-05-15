@@ -1,121 +1,86 @@
+<?php
+
+session_start();
+$servername = "localhost"; 
+$username = "vscode_user";
+$password = "senha123";
+$database = "gamelist";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if (!$conn) {
+    die("Falha na conexão: " . mysqli_connect_error());
+}
+
+$mensagemErro = "";
+$loginfeito = false;
+
+    if (isset($_POST['login'])) {
+        $nome = $_POST['nome'];
+        $senha = $_POST['senha'];
+        $stmt = $conn->prepare("Select * from login where nome = ? and senha = ?");
+        $stmt->bind_param("ss", $nome, $senha); 
+        $stmt->execute();                 
+        $result = $stmt->get_result();     
+
+        if ($result->num_rows > 0 ){
+          $_SESSION['usuario'] = $nome;  
+          $loginfeito = true; 
+          header("Location: home.php");       
+          exit();  
+        }
+        else {
+        $mensagemErro = "Usuário ou senha incorretos! ";}
+    } 
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca de Jogos</title>
-  <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Jogos</title>
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-tertiary-color">
-  <nav class="navbar navbar-expand-lg bg-primary">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-      <div class="mx-auto">
-        <a class="nav-link active text-warning fw-bold" href="#">GAMELIST</a>
-      </div>
-      <div>
-       <a href="profile.php"> <button class="btn btn-outline-warning" type="button" id="perfil">LOGIN</button> </a>
-      </div>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <div class="mx-auto">
+                <a class="nav-link active text-warning fw-bold" href="#">GAMELIST</a>
+            </div>
+            <div>
+               <a href="profile.php"> <button class="btn btn-outline-warning" type="button">LOGIN</button> </a>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="text-center mt-5 text-warning bg-primary fs-4 w-25 mx-auto" >
+            REALIZAR LOGIN
+        </div>
     </div>
-  </nav>
-  <div class="row">
-  <div class="text-center mt-5 text-primary fs-4" >
-    EXPLORAR JOGOS EM DESTAQUE 
-  </div>
-</div>
-<div id="carouselExampleDark" class="carousel carousel-dark slide">
-  <div class="carousel-inner mt-5 " id=Dixit>
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="images/Dixit.png" class="d-block w-25 mx-auto" alt="Dixit">
-      <ul class="list-group list-group-horizontal justify-content-center gap-2">
-  <li class="list-group-item border-0 p-1 mt-3 bg-warning">
-    <input class="form-check-input me-0" type="checkbox" value="" id="Tenho">
-    <label class="form-check-label" for="firstCheckbox">TENHO</label>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="DESEJADO">
-    <label class="form-check-label" for="firstCheckbox">DESEJADO</label>
-  </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="JOGADO">
-    <label class="form-check-label" for="firstCheckbox">JÁ JOGUEI</label>
-  </li>
-    </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="FAVORITO">
-    <label class="form-check-label" for="firstCheckbox">FAVORITO</label>
-  </li>
+    <form action="" method="post" class="mt-4">
+        <div class="mb-3 mx-auto text-center">
+            <label for="nome" class="form-label text-primary fs-4">Nome de user</label>
+            <input type="text" class="form-control w-50 mx-auto" id="nome" name="nome" placeholder="Nome">
+        </div>
+        <div class="mb-3 mx-auto text-center">
+            <label for="senha" class="form-label text-primary fs-4">Password</label>
+            <input type="password" id="senha" name="senha" class="form-control w-50 mx-auto" placeholder="Senha">
+            <?php if (!empty($mensagemErro)) : ?>
+            <div class="text-center text-primary "id="errou"><?php echo $mensagemErro; ?></div>
+             <?php endif; ?>
+        </div>
+        <div class="text-center">
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-outline-primary" name="login">REALIZAR LOGIN</button>
+        </div>
 
-</ul>
-    </div>
-    <div class="carousel-item" id="jogo_da_vida" data-bs-interval="2000">
-      <img src="images/JogoVida.png" class="d-block w-25 mx-auto" alt="Jogo da Vida">
-            <ul class="list-group list-group-horizontal justify-content-center gap-2">
-  <li class="list-group-item border-0 p-1 mt-3 bg-warning">
-    <input class="form-check-input me-0" type="checkbox" value="" id="Tenho">
-    <label class="form-check-label" for="firstCheckbox">TENHO</label>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="DESEJADO">
-    <label class="form-check-label" for="firstCheckbox">DESEJADO</label>
-  </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="JOGADO">
-    <label class="form-check-label" for="firstCheckbox">JÁ JOGUEI</label>
-  </li>
-    </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="FAVORITO">
-    <label class="form-check-label" for="firstCheckbox">FAVORITO</label>
-  </li>
-</ul>
-      <div class="carousel-caption d-none d-md-block">
-        
-         
-      </div>
-    </div>
-    <div class="carousel-item" id="uno">
-      <img src="images/Uno.png" class="d-block w-25 mx-auto" alt="Uno">
-            <ul class="list-group list-group-horizontal justify-content-center gap-2">
-  <li class="list-group-item border-0 p-1 mt-3 bg-warning">
-    <input class="form-check-input me-0" type="checkbox" value="" id="Tenho">
-    <label class="form-check-label" for="firstCheckbox">TENHO</label>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="DESEJADO">
-    <label class="form-check-label" for="firstCheckbox">DESEJADO</label>
-  </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="JOGADO">
-    <label class="form-check-label" for="firstCheckbox">JÁ JOGUEI</label>
-  </li>
-    </li>
-    <li class="list-group-item border-0 p-1 mt-3 bg-warning" >
-    <input class="form-check-input me-0" type="checkbox" value="" id="FAVORITO">
-    <label class="form-check-label" for="firstCheckbox">FAVORITO</label>
-  </li>
-
-</ul>
-      <div class="carousel-caption d-none d-md-block">
-         
-        
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</body>
+    </form>
+    </body>
 </html>
 
-<script>
-  <?php if (isset($_SESSION['usuario'])): ?>
-    document.getElementById("perfil").textContent = "PROFILE";
-  <?php endif; ?>
-</script>
 
