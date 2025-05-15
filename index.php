@@ -16,7 +16,7 @@
         <a class="nav-link active text-warning fw-bold" href="#">GAMELIST</a>
       </div>
       <div>
-       <a href="profile.php"> <button class="btn btn-outline-warning" type="button">LOGIN</button> </a>
+       <a href="profile.php"> <button class="btn btn-outline-warning" type="button" id="perfil">LOGIN</button> </a>
       </div>
     </div>
   </nav>
@@ -112,3 +112,10 @@
 </div>
 </body>
 </html>
+
+<script>
+  <?php if (isset($_SESSION['usuario'])): ?>
+    document.getElementById("perfil").textContent = "PROFILE";
+  <?php endif; ?>
+</script>
+
