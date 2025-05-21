@@ -69,11 +69,11 @@ $loginfeito = false;
             <label for="senha" class="form-label text-primary fs-4">Password</label>
             <input type="password" id="senha" name="senha" class="form-control w-50 mx-auto" placeholder="Senha">
             <?php if (!empty($mensagemErro)) : ?>
-            <div class="text-center text-primary "id="errou"><?php echo $mensagemErro; ?></div>
+            <div class="text-center text-danger "id="errou"><?php echo $mensagemErro; ?></div>
              <?php endif; ?>
         </div>
         <div class="text-center">
-            <a href="#">Esqueceu a senha?</a>
+            <a href="cadastro.php">Ainda não é cadastrado? Faça seu cadastro aqui</a>
         </div>
         <div class="d-flex justify-content-center mt-3">
             <button type="submit" class="btn btn-outline-primary" name="login">REALIZAR LOGIN</button>
