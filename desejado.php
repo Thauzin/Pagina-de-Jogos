@@ -17,7 +17,7 @@ $sql = "SELECT *
         FROM usuario_jogo uj
         JOIN jogos j ON uj.id_jogo = j.nome
         WHERE uj.id_usuario = ?
-        AND desejado = true";
+        AND desejado = true"; 
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $id_usuario);
