@@ -7,7 +7,6 @@
   <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body class="bg-tertiary-color">
   <nav class="navbar navbar-expand-lg bg-primary">
@@ -110,6 +109,96 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+  <div class="text-center mt-5 text-primary fs-4" >
+    ADICIONAR JOGOS
+  </div>
+  <br>
+  <br>
+  <div class="row g-3 align-items-center position-absolute start-50 translate-middle">
+  <div class="col-auto">
+    <label for="inputPassword6" class="col-form-label text-primary">Nome</label>
+  </div>
+  <div class="col-auto ">
+    <input type="text" id="nome" class="form-control border border-primary" aria-describedby="passwordHelpInline">
+  </div>
+  <div class="col-auto">
+    <span id="passwordHelpInline" class="form-text">
+      Must be 1-50 characters long.
+    </span>
+  </div>
+</div>
+<br>
+<div class="row g-3 justify-content-center align-items-center">
+  <div class="col-auto">
+    <label class="col-form-label text-primary" id="tenho">Tenho: </label>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+      <label class="form-check-label" for="radioDefault1">Sim</label>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+      <label class="form-check-label" for="radioDefault2">Não</label>
+    </div>
+  </div>
+</div>
+<div class="row g-3 justify-content-center align-items-center">
+  <div class="col-auto">
+    <label class="col-form-label text-primary " id="desejado">Desejado: </label>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault1" id="radioDefault3">
+      <label class="form-check-label" for="radioDefault3">Sim</label>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault1" id="radioDefault4" checked>
+      <label class="form-check-label" for="radioDefault4">Não</label>
+    </div>
+  </div>
+</div>
+<div class="row g-3 justify-content-center align-items-center">
+  <div class="col-auto">
+    <label class="col-form-label text-primary" id="favorito">Favorito: </label>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault2" id="radioDefault5">
+      <label class="form-check-label" for="radioDefault5">Sim</label>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="radioDefault2" id="radioDefault6" checked>
+      <label class="form-check-label" for="radioDefault6">Não</label>
+    </div>
+  </div>
+</div>
+<br>
+  <div class="row g-3 align-items-center position-absolute start-50 translate-middle">
+  <div class="col-auto">
+    <label for="inputPassword6" class="col-form-label text-primary">Número de jogadores</label>
+  </div>
+  <div class="col-auto ">
+    <input type="number" class="form-control border-primary" min="0" max="50" step="1" value="5">
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center"> 
+<button type="button" class="btn btn-outline-warning">Warning</button>
+</div>
+<br>
+<br>
 </body>
 </html>
 
